@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plomberies Vida Ltée – Plumbing You Can Trust</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --steel: #1e3a5f;
+    --copper: #c87941;
+    --copper-light: #e09560;
+    --cream: #f5f0e8;
+    --warm-white: #fdfaf5;
+    --text: #1a1a2e;
+    --muted: #6b7280;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(13,27,42,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(200,121,65,0.25);
+  }
+
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    color: var(--cream);
+    letter-spacing: 0.03em;
+  }
+  .nav-logo span { color: var(--copper); }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(245,240,232,0.75); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--copper-light); }
+
+  .nav-cta {
+    background: var(--copper); color: #fff;
+    padding: 0.6rem 1.4rem; border-radius: 2px;
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--copper-light); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Pipe grid background */
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(200,121,65,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,121,65,0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Copper glow blob */
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    right: -100px; top: 50%; transform: translateY(-50%);
+    background: radial-gradient(circle, rgba(200,121,65,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(200,121,65,0.15); border: 1px solid rgba(200,121,65,0.3);
+    color: var(--copper-light); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.45rem 1rem; border-radius: 2px; margin-bottom: 2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-badge::before { content: '●'; font-size: 0.5rem; }
+
+  .hero-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 700; line-height: 1.05;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+  .hero-title em { font-style: italic; color: var(--copper); }
+
+  .hero-sub {
+    font-size: 1.1rem; line-height: 1.7; color: rgba(245,240,232,0.65);
+    max-width: 480px; margin-bottom: 2.5rem;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; align-items: center;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--copper); color: #fff;
+    padding: 1rem 2rem; border-radius: 2px;
+    font-size: 0.9rem; font-weight: 500; letter-spacing: 0.05em;
+    text-decoration: none; transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--copper-light); transform: translateY(-1px); }
+
+  .btn-ghost {
+    color: var(--cream); font-size: 0.9rem; font-weight: 400;
+    text-decoration: none; display: flex; align-items: center; gap: 0.5rem;
+    opacity: 0.7; transition: opacity 0.2s;
+  }
+  .btn-ghost:hover { opacity: 1; }
+
+  /* Hero visual side */
+  .hero-visual {
+    display: flex; justify-content: center; align-items: center;
+    position: relative; z-index: 2;
+    animation: fadeIn 1s 0.4s ease both;
+  }
+
+  .hero-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(200,121,65,0.2);
+    border-radius: 4px;
+    padding: 2.5rem;
+    width: 340px;
+    position: relative;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute; top: -1px; left: 2rem; right: 2rem; height: 2px;
+    background: var(--copper);
+  }
+
+  .card-icon {
+    font-size: 2.5rem; margin-bottom: 1.2rem; display: block;
+  }
+
+  .card-label {
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--copper); margin-bottom: 0.4rem;
+  }
+
+  .card-stat {
+    font-family: 'Fraunces', serif;
+    font-size: 2.8rem; color: var(--cream); font-weight: 700; line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .card-desc { color: rgba(245,240,232,0.5); font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+  .card-divider { border: none; border-top: 1px solid rgba(200,121,65,0.15); margin: 1.5rem 0; }
+
+  .stars { color: var(--copper); font-size: 1.1rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+  .review-text { color: rgba(245,240,232,0.65); font-style: italic; font-size: 0.9rem; line-height: 1.6; }
+  .review-author { color: var(--copper-light); font-size: 0.8rem; margin-top: 0.5rem; }
+
+  /* ── WHY US ── */
+  .section {
+    padding: 6rem 4rem;
+  }
+
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--copper); margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 700; line-height: 1.15;
+    color: var(--navy); margin-bottom: 1rem;
+  }
+
+  .section-sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 560px; }
+
+  /* Values grid */
+  .values-section { background: var(--cream); }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 4rem;
+    background: rgba(200,121,65,0.12);
+  }
+
+  .value-card {
+    background: var(--cream);
+    padding: 3rem 2.5rem;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .value-card:hover { background: var(--warm-white); }
+
+  .value-number {
+    font-family: 'Fraunces', serif; font-size: 4rem; font-weight: 700;
+    color: rgba(200,121,65,0.12); line-height: 1;
+    position: absolute; top: 1.5rem; right: 2rem;
+    pointer-events: none;
+  }
+
+  .value-icon { font-size: 2rem; margin-bottom: 1.2rem; display: block; }
+  .value-name {
+    font-family: 'Fraunces', serif; font-size: 1.35rem; font-weight: 700;
+    color: var(--navy); margin-bottom: 0.6rem;
+  }
+  .value-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
+
+  /* ── SERVICES ── */
+  .services-section { background: var(--navy); position: relative; overflow: hidden; }
+
+  .services-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(200,121,65,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,121,65,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .services-section .section-title { color: var(--cream); }
+  .services-section .section-sub { color: rgba(245,240,232,0.55); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .service-item {
+    border: 1px solid rgba(200,121,65,0.18);
+    border-radius: 2px;
+    padding: 2rem 2rem 2rem 2.5rem;
+    position: relative;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .service-item::before {
+    content: ''; position: absolute;
+    left: 0; top: 1.5rem; bottom: 1.5rem; width: 2px;
+    background: var(--copper); opacity: 0; transition: opacity 0.2s;
+  }
+  .service-item:hover { border-color: rgba(200,121,65,0.45); background: rgba(200,121,65,0.04); }
+  .service-item:hover::before { opacity: 1; }
+
+  .service-icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
+  .service-name {
+    font-family: 'Fraunces', serif; font-size: 1.15rem; font-weight: 700;
+    color: var(--cream); margin-bottom: 0.4rem;
+  }
+  .service-desc { color: rgba(245,240,232,0.5); font-size: 0.875rem; line-height: 1.65; }
+
+  /* ── REVIEWS ── */
+  .reviews-section { background: var(--warm-white); }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .review-card {
+    background: var(--cream);
+    border: 1px solid rgba(200,121,65,0.15);
+    border-radius: 2px;
+    padding: 2rem;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .review-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.07); }
+
+  .review-card .stars { font-size: 0.95rem; margin-bottom: 0.8rem; }
+  .review-card .review-text {
+    font-style: italic; color: var(--text); font-size: 0.9rem; line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+  .review-card .review-author { font-weight: 500; color: var(--navy); font-size: 0.8rem; }
+  .review-card .review-date { color: var(--muted); font-size: 0.75rem; }
+
+  .review-quote {
+    font-family: 'Fraunces', serif; font-size: 3rem; color: var(--copper);
+    opacity: 0.2; line-height: 0.6; margin-bottom: 0.8rem; display: block;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--copper);
+    padding: 5rem 4rem;
+    display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center;
+  }
+
+  .cta-title {
+    font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700; color: #fff; line-height: 1.2;
+  }
+  .cta-sub { color: rgba(255,255,255,0.75); margin-top: 0.6rem; font-size: 1rem; }
+
+  .cta-phone {
+    background: #fff; color: var(--copper);
+    padding: 1.1rem 2.4rem; border-radius: 2px;
+    font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700;
+    text-decoration: none; white-space: nowrap;
+    transition: transform 0.15s;
+  }
+  .cta-phone:hover { transform: scale(1.03); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    padding: 3rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(200,121,65,0.2);
+  }
+
+  .footer-logo {
+    font-family: 'Fraunces', serif; font-size: 1.1rem; color: var(--cream);
+  }
+  .footer-logo span { color: var(--copper); }
+  .footer-tag { color: rgba(245,240,232,0.35); font-size: 0.8rem; margin-top: 0.3rem; }
+
+  .footer-info { text-align: right; color: rgba(245,240,232,0.5); font-size: 0.85rem; line-height: 1.8; }
+  .footer-info a { color: var(--copper-light); text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; }
+    .hero-visual { display: none; }
+    .section { padding: 4rem 1.5rem; }
+    .values-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .cta-section { grid-template-columns: 1fr; }
+    .cta-phone { display: inline-block; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .footer-info { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Plomberies<span> Vida</span> Ltée</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why-us">Why Us</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+  </ul>
+  <a href="tel:+15148243595" class="nav-cta">Call Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Côte Saint-Luc & Greater Montréal</div>
+    <h1 class="hero-title">
+      Plumbing done<br>
+      <em>honestly.</em>
+    </h1>
+    <p class="hero-sub">
+      Fast, reliable, and straightforward plumbing services — no hidden fees, no surprises. Just the work that needs to be done, done right.
+    </p>
+    <div class="hero-actions">
+      <a href="tel:+15148243595" class="btn-primary">📞 Call for a Quote</a>
+      <a href="#services" class="btn-ghost">View services →</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card">
+      <span class="card-icon">🔧</span>
+      <div class="card-label">Years in Business</div>
+      <div class="card-stat">20+</div>
+      <div class="card-desc">Trusted by Montréal homeowners</div>
+      <hr class="card-divider">
+      <div class="stars">★★★★★</div>
+      <div class="review-text">"Extremely reliable. I wouldn't call anyone else."</div>
+      <div class="review-author">— Eric D., Local Guide</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="values-section section" id="why-us">
+  <div class="section-label">Why Choose Vida</div>
+  <h2 class="section-title reveal">The three things<br>our customers always say.</h2>
+  <p class="section-sub reveal">Every review says the same thing — read them yourself. We built our reputation one honest job at a time.</p>
+
+  <div class="values-grid">
+    <div class="value-card reveal">
+      <span class="value-number">01</span>
+      <span class="value-icon">🤝</span>
+      <div class="value-name">Honest</div>
+      <p class="value-desc">We tell you exactly what needs doing — nothing more. If a quick fix is all you need, that's all we'll charge you for.</p>
+    </div>
+    <div class="value-card reveal">
+      <span class="value-number">02</span>
+      <span class="value-icon">⚡</span>
+      <div class="value-name">Fast</div>
+      <p class="value-desc">We show up when we say we will and get the job done efficiently. Your time matters, and we don't waste it.</p>
+    </div>
+    <div class="value-card reveal">
+      <span class="value-number">03</span>
+      <span class="value-icon">✅</span>
+      <div class="value-name">Reliable</div>
+      <p class="value-desc">From small repairs to full drainage installs, every job is finished right the first time. No callbacks, no excuses.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section section" id="services">
+  <div class="section-label" style="color: var(--copper);">What We Do</div>
+  <h2 class="section-title reveal">Plumbing services<br>for every situation.</h2>
+  <p class="section-sub reveal">Residential and commercial plumbing throughout the Montréal region.</p>
+
+  <div class="services-grid">
+    <div class="service-item reveal">
+      <div class="service-icon">🚿</div>
+      <div class="service-name">Drain Cleaning & Repair</div>
+      <p class="service-desc">Blocked or slow drains cleared fast. Surface or deep clogs — we handle both without unnecessary upselling.</p>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-icon">🏗️</div>
+      <div class="service-name">Drainage Installation</div>
+      <p class="service-desc">Subterranean drainage systems installed with precision. We've done it hundreds of times — the job will be perfect.</p>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-icon">💧</div>
+      <div class="service-name">Leak Detection & Repair</div>
+      <p class="service-desc">Pinpoint leaks before they become disasters. We fix the problem, not just the symptom.</p>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-icon">🔩</div>
+      <div class="service-name">Pipe Replacement</div>
+      <p class="service-desc">Old or damaged pipes replaced cleanly and correctly. We'll tell you honestly if replacement is truly necessary.</p>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-icon">🚽</div>
+      <div class="service-name">Fixture Installation</div>
+      <p class="service-desc">Toilets, sinks, showers, and more — installed properly and ready to last for years.</p>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-icon">🏠</div>
+      <div class="service-name">Emergency Plumbing</div>
+      <p class="service-desc">Plumbing emergencies don't wait. Neither do we. Call us and we'll get there.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section section" id="reviews">
+  <div class="section-label">Customer Reviews</div>
+  <h2 class="section-title reveal">Don't take our word for it.</h2>
+  <p class="section-sub reveal">5 stars on Google. Here's what our customers have to say.</p>
+
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <span class="review-quote">"</span>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Excellent, fast and honest. Had subterranean drainage pipes installed and the job was perfect.</p>
+      <div class="review-author">David C.</div>
+      <div class="review-date">Local Guide · 6 years ago</div>
+    </div>
+    <div class="review-card reveal">
+      <span class="review-quote">"</span>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Honest & Extremely Reliable! I wouldn't call anyone else.</p>
+      <div class="review-author">Eric D.</div>
+      <div class="review-date">Local Guide · 3 years ago</div>
+    </div>
+    <div class="review-card reveal">
+      <span class="review-quote">"</span>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Very honest man. He could've charged me by the hour, but instead told me exactly what needed to be done — over the phone.</p>
+      <div class="review-author">Montréal Customer</div>
+      <div class="review-date">5 years ago</div>
+    </div>
+    <div class="review-card reveal">
+      <span class="review-quote">"</span>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Very honest, quick and efficient.</p>
+      <div class="review-author">Stephen L.</div>
+      <div class="review-date">Local Guide · 1 year ago</div>
+    </div>
+    <div class="review-card reveal">
+      <span class="review-quote">"</span>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Efficient, quick, honest, and competent. Exactly what you need from a plumber.</p>
+      <div class="review-author">Tanya H.</div>
+      <div class="review-date">2 years ago</div>
+    </div>
+    <div class="review-card reveal" style="background: var(--navy); border-color: var(--copper);">
+      <div style="font-family:'Fraunces',serif; font-size:2.5rem; font-weight:700; color:var(--cream); margin-bottom:0.3rem;">5.0</div>
+      <div class="stars" style="margin-bottom:0.6rem;">★★★★★</div>
+      <p style="color:rgba(245,240,232,0.6); font-size:0.85rem;">Average rating across all Google Reviews.</p>
+      <a href="https://g.co/kgs/yourlink" style="display:inline-block; margin-top:1rem; color:var(--copper-light); font-size:0.8rem; text-decoration:none;">View on Google →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div>
+    <h2 class="cta-title">Need a plumber you can trust?<br>Call Vida today.</h2>
+    <p class="cta-sub">Free estimates. No obligation. Just honest advice.</p>
+  </div>
+  <a href="tel:+15148243595" class="cta-phone">📞 (514) 824-3595</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Plomberies <span>Vida</span> Ltée</div>
+    <div class="footer-tag">Licensed Plumbing Contractor · Côte Saint-Luc, QC</div>
+  </div>
+  <div class="footer-info">
+    <div>5624 Av. Sabin, Côte Saint-Luc, QC H4W 2W1</div>
+    <div><a href="tel:+15148243595">(514) 824-3595</a></div>
+    <div style="margin-top:0.5rem; font-size:0.75rem; opacity:0.4;">© 2025 Plomberies Vida Ltée. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
